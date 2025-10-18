@@ -1,0 +1,3 @@
+[ 2025-05-25 18:51:57,819 ] 16 my_doctor_app - INFO - GROQ_API_KEY loaded successfully.
+[ 2025-05-25 18:51:58,392 ] 25 my_doctor_app - INFO - Initializing LLM model: mixtral-8x7b-32768
+[ 2025-05-25 18:51:58,527 ] 29 my_doctor_app - INFO - Groq model 'mixtral-8x7b-32768' initialized successfully.

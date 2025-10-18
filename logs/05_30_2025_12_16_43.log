@@ -1,0 +1,2 @@
+[ 2025-05-30 12:16:50,615 ] 22 my_doctor_app - INFO - Sending request to API: http://127.0.0.1:8000/execute
+[ 2025-05-30 12:16:52,694 ] 45 my_doctor_app - ERROR - Error 500: {"detail":"Internal Server Error"}

@@ -1,0 +1,118 @@
+[ 2025-05-30 12:16:07,461 ] 16 my_doctor_app - INFO - GROQ_API_KEY loaded successfully.
+[ 2025-05-30 12:16:08,131 ] 25 my_doctor_app - INFO - Initializing LLM model: mixtral-8x7b-32768
+[ 2025-05-30 12:16:08,271 ] 29 my_doctor_app - INFO - Groq model 'mixtral-8x7b-32768' initialized successfully.
+[ 2025-05-30 12:16:08,271 ] 33 my_doctor_app - INFO - LLM model initialized successfully.
+[ 2025-05-30 12:16:08,271 ] 20 my_doctor_app - INFO - Doctor appointment agent initialized successfully.
+[ 2025-05-30 12:16:50,640 ] 29 my_doctor_app - INFO - Received request with ID Number: 1000082
+[ 2025-05-30 12:16:50,640 ] 115 my_doctor_app - INFO - Building workflow graph.
+[ 2025-05-30 12:16:50,653 ] 122 my_doctor_app - INFO - Workflow graph compiled.
+[ 2025-05-30 12:16:50,721 ] 36 my_doctor_app - INFO - Entered supervisor node.
+[ 2025-05-30 12:16:51,303 ] 1055 groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 0.381721 seconds
+[ 2025-05-30 12:16:51,768 ] 1055 groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 0.811103 seconds
+[ 2025-05-30 12:16:52,669 ] 66 my_doctor_app - ERROR - Unhandled exception in execute_agent: Connection error.
+Traceback (most recent call last):
+  File "E:\Doctor-Appointment-Aiagent\venv\Lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "E:\Doctor-Appointment-Aiagent\venv\Lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Doctor-Appointment-Aiagent\venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "E:\Doctor-Appointment-Aiagent\venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Doctor-Appointment-Aiagent\venv\Lib\site-packages\httpcore\_sync\connection.py", line 101, in handle_request
+    raise exc
+  File "E:\Doctor-Appointment-Aiagent\venv\Lib\site-packages\httpcore\_sync\connection.py", line 78, in handle_request
+    stream = self._connect(request)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Doctor-Appointment-Aiagent\venv\Lib\site-packages\httpcore\_sync\connection.py", line 156, in _connect
+    stream = stream.start_tls(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Doctor-Appointment-Aiagent\venv\Lib\site-packages\httpcore\_backends\sync.py", line 154, in start_tls
+    with map_exceptions(exc_map):
+  File "E:\Doctor-Appointment-Aiagent\venv\Lib\contextlib.py", line 155, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "E:\Doctor-Appointment-Aiagent\venv\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\Doctor-Appointment-Aiagent\venv\Lib\site-packages\groq\_base_client.py", line 967, in request
+    response = self._client.send(
+               ^^^^^^^^^^^^^^^^^^
+  File "E:\Doctor-Appointment-Aiagent\venv\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Doctor-Appointment-Aiagent\venv\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Doctor-Appointment-Aiagent\venv\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Doctor-Appointment-Aiagent\venv\Lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Doctor-Appointment-Aiagent\venv\Lib\site-packages\httpx\_transports\default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+  File "E:\Doctor-Appointment-Aiagent\venv\Lib\contextlib.py", line 155, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "E:\Doctor-Appointment-Aiagent\venv\Lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\Doctor-Appointment-Aiagent\main.py", line 51, in execute_agent
+    response = app_graph.invoke(query_data, config={"recursion_limit": 20})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Doctor-Appointment-Aiagent\venv\Lib\site-packages\langgraph\pregel\__init__.py", line 2795, in invoke
+    for chunk in self.stream(
+  File "E:\Doctor-Appointment-Aiagent\venv\Lib\site-packages\langgraph\pregel\__init__.py", line 2433, in stream
+    for _ in runner.tick(
+  File "E:\Doctor-Appointment-Aiagent\venv\Lib\site-packages\langgraph\pregel\runner.py", line 153, in tick
+    run_with_retry(
+  File "E:\Doctor-Appointment-Aiagent\venv\Lib\site-packages\langgraph\pregel\retry.py", line 40, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Doctor-Appointment-Aiagent\venv\Lib\site-packages\langgraph\utils\runnable.py", line 623, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Doctor-Appointment-Aiagent\venv\Lib\site-packages\langgraph\utils\runnable.py", line 377, in invoke
+    ret = self.func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Doctor-Appointment-Aiagent\agent.py", line 46, in supervisor_node
+    response = self.llm_model.with_structured_output(Router).invoke(messages)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Doctor-Appointment-Aiagent\venv\Lib\site-packages\langchain_core\runnables\base.py", line 3045, in invoke
+    input_ = context.run(step.invoke, input_, config, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Doctor-Appointment-Aiagent\venv\Lib\site-packages\langchain_core\runnables\base.py", line 5430, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "E:\Doctor-Appointment-Aiagent\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 371, in invoke
+    self.generate_prompt(
+  File "E:\Doctor-Appointment-Aiagent\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 956, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Doctor-Appointment-Aiagent\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 775, in generate
+    self._generate_with_cache(
+  File "E:\Doctor-Appointment-Aiagent\venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1021, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "E:\Doctor-Appointment-Aiagent\venv\Lib\site-packages\langchain_groq\chat_models.py", line 498, in _generate
+    response = self.client.create(messages=message_dicts, **params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Doctor-Appointment-Aiagent\venv\Lib\site-packages\groq\resources\chat\completions.py", line 341, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "E:\Doctor-Appointment-Aiagent\venv\Lib\site-packages\groq\_base_client.py", line 1222, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Doctor-Appointment-Aiagent\venv\Lib\site-packages\groq\_base_client.py", line 999, in request
+    raise APIConnectionError(request=request) from err
+groq.APIConnectionError: Connection error.
+During task with name 'supervisor' and id '51a6b83a-0276-f849-afa8-ea69d5a19f2f'
